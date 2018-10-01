@@ -23,6 +23,15 @@ before_action :set_kitten_url, only: [:kitten, :kittens]
   def kittens
   end
 
+  def secrets
+    if params[:magic_word] == "kitty"
+      redirect_to '/secrets/:magic_word'
+    else
+      flash[:alert] = "Sorry, you're not authorized to see that page!"
+      redirect_to '/welcome'
+    end
+  end
+
 
 
   def set_kitten_url
